@@ -12,6 +12,10 @@ namespace Aerospace.Controllers
     {
         private IFlightsService _flightsService;
 
+        /// <summary>
+        /// Constructor which uses dependency injection to instantiate services
+        /// </summary>
+        /// <param name="flightsService"></param>
         public FlightsController(IFlightsService flightsService)
         {
             _flightsService = flightsService;
@@ -20,6 +24,7 @@ namespace Aerospace.Controllers
         public IActionResult Index()
         {
             ViewData["message"] = _flightsService.GetFlights();
+
             return View();
         }
     }
