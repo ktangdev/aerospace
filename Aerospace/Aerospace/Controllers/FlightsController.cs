@@ -29,7 +29,7 @@ namespace Aerospace.Controllers
 
             List<AircraftState> testObj = JsonConvert.DeserializeObject<List<AircraftState>>(test);
 
-            var k = testObj[0].Origin_Country;
+            var k = testObj[0].OriginCountry;
 
             ViewData["message"] = k;
 
