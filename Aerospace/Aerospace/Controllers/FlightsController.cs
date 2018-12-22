@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Interfaces;
-using Core.Models;
-using Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Aerospace.Controllers
 {
@@ -27,11 +24,7 @@ namespace Aerospace.Controllers
         {
             var test = _flightsService.GetFlights();
 
-            List<AircraftState> testObj = JsonConvert.DeserializeObject<List<AircraftState>>(test);
-
-            var k = testObj[0].OriginCountry;
-
-            ViewData["message"] = k;
+            ViewData["message"] = test;
 
             return View();
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+    [Serializable]
     public class Aircraft
     {
         /// <summary>

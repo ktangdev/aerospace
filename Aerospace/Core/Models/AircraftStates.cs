@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+    [Serializable]
     public class AircraftStates
     {
         public int Time { get; set; }
 
-        public List<List<AircraftState>> States { get; set; }
+        public string[,] States { get; set; }
     }
 }
