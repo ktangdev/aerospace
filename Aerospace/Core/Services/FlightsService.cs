@@ -20,10 +20,13 @@ namespace Core.Services
         /// Get flights returns a list of all current flights
         /// </summary>
         /// <returns></returns>
-        public string GetFlights()
+        public IEnumerable<AircraftState> GetFlights()
         {
+            List<AircraftState> aircraftStates = new List<AircraftState>();
+
             try
             {
+                // Sends a request to the API endpoint
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = httpClient.GetAsync("https://opensky-network.org/api/states/all").Result;
@@ -32,13 +35,13 @@ namespace Core.Services
                 {
                     using (HttpContent content = response.Content)
                     {
-                        List<AircraftState> aircraftStates = new List<AircraftState>();
-
+                        // Upon a successful request read JSON object
                         var result = content.ReadAsStringAsync();
                         var jsonObj = JObject.Parse(result.Result);
-                        var states = jsonObj["states"].ToList();
+                        var jsonStates = jsonObj["states"].ToList();
 
-                        foreach (var state in states)
+                        // Loop through each aircraft state and add it to a list
+                        foreach (var state in jsonStates)
                         {
                             AircraftState aircraftState = new AircraftState
                             {
@@ -59,20 +62,24 @@ namespace Core.Services
                                 Squawk = state[14].ToString() ?? "",
                                 Spi = state[15].ToObject<bool?>(),
                                 PositionSource = state.Last.ToObject<int?>()
-                        };
+                            };
 
                             aircraftStates.Add(aircraftState);
                         }
 
-                        return aircraftStates.Count().ToString();
+                        return aircraftStates;
                     }
                 }
-
-                return response.StatusCode.ToString();
+                else
+                {
+                    // When response code is not successful, return empty list
+                    return aircraftStates;
+                }
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                Console.WriteLine(ex.ToString());
+                return aircraftStates;
             }
         }
     }

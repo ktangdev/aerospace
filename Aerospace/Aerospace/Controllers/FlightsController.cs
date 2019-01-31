@@ -24,9 +24,9 @@ namespace Aerospace.Controllers
         {
             var test = _flightsService.GetFlights();
 
-            ViewData["message"] = test;
+            ViewData["message"] = test.FirstOrDefault().Icao24;
 
-            return View();
+            return View(test);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Core.Models.AircraftState>
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,13 +11,22 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Flight Number</th>
-                <th>Airline</th>
-                <th>Departure Time</th>
+                <th>Mode S Code</th>
+                <th>Callsign</th>
+                <th>Velocity</th>
                 <th>Arrival Time</th>
             </tr>
         </thead>
         <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>item.Icao24</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
             <tr>
                 <td>CX303</td>
                 <td>Cathay Pacific</td>

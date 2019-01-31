@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Core.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Interfaces
 {
     public interface IFlightsService
     {
-        string GetFlights();
+        IEnumerable<AircraftState> GetFlights();
     }
 }
