@@ -27,57 +27,57 @@ namespace Core.Models
         /// <summary>
         /// Unix timestamp (seconds) for the last position update. Can be null if no position report was received by OpenSky within the past 15s.
         /// </summary>
-        public int TimePosition { get; set; }
+        public int? TimePosition { get; set; }
 
         /// <summary>
         /// Unix timestamp (seconds) for the last update in general. This field is updated for any new, valid message received from the transponder.
         /// </summary>
-        public int LastContact { get; set; }
+        public int? LastContact { get; set; }
 
         /// <summary>
         /// WGS-84 longitude in decimal degrees. Can be null.
         /// </summary>
-        public float Longitude { get; set; }
+        public float? Longitude { get; set; }
 
         /// <summary>
         /// WGS-84 latitude in decimal degrees. Can be null.
         /// </summary>
-        public float Latitude { get; set; }
+        public float? Latitude { get; set; }
 
         /// <summary>
         /// Barometric altitude in meters. Can be null.
         /// </summary>
-        public float BaroAltitude { get; set; }
+        public float? BaroAltitude { get; set; }
 
         /// <summary>
         /// Boolean value which indicates if the position was retrieved from a surface position report.
         /// </summary>
-        public bool OnGround { get; set; }
+        public bool? OnGround { get; set; }
 
         /// <summary>
         /// Velocity over ground in m/s. Can be null.
         /// </summary>
-        public float Velocity { get; set; }
+        public float? Velocity { get; set; }
 
         /// <summary>
         /// Heading in decimal degrees clockwise from north (i.e. north=0°). Can be null.
         /// </summary>
-        public float TrueTrack { get; set; }
+        public float? TrueTrack { get; set; }
 
         /// <summary>
         /// Vertical rate in m/s. A positive value indicates that the airplane is climbing, a negative value indicates that it descends. Can be null.
         /// </summary>
-        public float VerticalRate { get; set; }
+        public float? VerticalRate { get; set; }
 
         /// <summary>
         /// IDs of the receivers which contributed to this state vector. Is null if no filtering for sensor was used in the request.
         /// </summary>
-        public int[] Sensors { get; set; }
+        public int?[] Sensors { get; set; }
 
         /// <summary>
         /// Geometric altitude in meters. Can be null.
         /// </summary>
-        public float GeoAltitude { get; set; }
+        public float? GeoAltitude { get; set; }
 
         /// <summary>
         /// The transponder code aka Squawk. Can be null.
@@ -87,11 +87,11 @@ namespace Core.Models
         /// <summary>
         /// Whether flight status indicates special purpose indicator.
         /// </summary>
-        public bool Spi { get; set; }
+        public bool? Spi { get; set; }
 
         /// <summary>
         /// Origin of this state’s position: 0 = ADS-B, 1 = ASTERIX, 2 = MLAT
         /// </summary>
-        public int PositionSource { get; set; }
+        public int? PositionSource { get; set; }
     }
 }
