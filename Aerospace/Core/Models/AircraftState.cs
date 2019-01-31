@@ -45,9 +45,9 @@ namespace Core.Models
         public float Latitude { get; set; }
 
         /// <summary>
-        /// Geometric altitude in meters. Can be null.
+        /// Barometric altitude in meters. Can be null.
         /// </summary>
-        public float GeoAltitude { get; set; }
+        public float BaroAltitude { get; set; }
 
         /// <summary>
         /// Boolean value which indicates if the position was retrieved from a surface position report.
@@ -62,7 +62,7 @@ namespace Core.Models
         /// <summary>
         /// Heading in decimal degrees clockwise from north (i.e. north=0°). Can be null.
         /// </summary>
-        public float Heading { get; set; }
+        public float TrueTrack { get; set; }
 
         /// <summary>
         /// Vertical rate in m/s. A positive value indicates that the airplane is climbing, a negative value indicates that it descends. Can be null.
@@ -75,9 +75,9 @@ namespace Core.Models
         public int[] Sensors { get; set; }
 
         /// <summary>
-        /// Barometric altitude in meters. Can be null.
+        /// Geometric altitude in meters. Can be null.
         /// </summary>
-        public float BaroAltitude { get; set; }
+        public float GeoAltitude { get; set; }
 
         /// <summary>
         /// The transponder code aka Squawk. Can be null.

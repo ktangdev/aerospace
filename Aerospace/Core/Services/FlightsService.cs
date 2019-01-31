@@ -50,13 +50,13 @@ namespace Core.Services
                             int LastContact = state[4].ToObject<int>();
                             float Longitude = state[5].ToObject<float>();
                             float Latitude = state[6].ToObject<float>();
-                            float GeoAltitude = state[7].ToObject<float>();
+                            float BaroAltitude = state[7].ToObject<float>();
                             bool OnGround = state[8].ToObject<bool>();
                             float Velocity = state[9].ToObject<float>();
-                            float Heading = state[10].ToObject<float>();
+                            float TrueTrack = state[10].ToObject<float>();
                             float VerticalRate = state[11].ToObject<float>();
                             int[] Sensors = state[12].ToObject<int[]>();
-                            float BaroAltitude = state[13].ToObject<float>();
+                            float GeoAltitude = state[13].ToObject<float>();
                             string Squawk = state[14].ToString();
                             bool Spi = state[15].ToObject<bool>();
                             int PositionSource = state.Last.ToObject<int>();
