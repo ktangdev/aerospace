@@ -8,7 +8,7 @@
 <h2>Flights Controller</h2>
 
 <div class="row">
-    <table class="table table-hover">
+    <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Mode S Code</th>
@@ -18,15 +18,6 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>item.Icao24</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            }
             <tr>
                 <td>CX303</td>
                 <td>Cathay Pacific</td>
@@ -50,5 +41,10 @@
 
     <button id="opensky" class="btn" btn-primary>Click OpenSky</button>
 </div>
+
+<div id="map"></div>
+
+<!-- Replace the value of the key parameter with your own API key. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap" async defer></script>
 
 
