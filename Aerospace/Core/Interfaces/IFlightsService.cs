@@ -5,6 +5,6 @@ namespace Core.Interfaces
 {
     public interface IFlightsService
     {
-        IEnumerable<AircraftState> GetFlights();
+        IEnumerable<AircraftState> GetStates();
     }
 }

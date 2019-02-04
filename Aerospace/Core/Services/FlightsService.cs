@@ -17,10 +17,11 @@ namespace Core.Services
         readonly HttpClient httpClient = new HttpClient();
 
         /// <summary>
-        /// Get flights returns a list of all current flights
+        /// The following API call can be used to retrieve any state vector of the OpenSky.
+        /// The states property is a two-dimensional array. Each row represents a state vector.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<AircraftState> GetFlights()
+        public IEnumerable<AircraftState> GetStates()
         {
             List<AircraftState> aircraftStates = new List<AircraftState>();
 
@@ -80,6 +81,87 @@ namespace Core.Services
             {
                 Console.WriteLine(ex.ToString());
                 return aircraftStates;
+            }
+        }
+
+        /// <summary>
+        /// This API call retrieves flights for a certain time interval [begin, end].
+        /// If no flights are found for the given time period, HTTP status 404 - Not found is returned with an empty response body.
+        /// The response is a JSON array of flights where each flight is an object.
+        /// </summary>s
+        /// <returns></returns>
+        public IEnumerable<Flight> GetFlightsByTime()
+        {
+            List<Flight> flights = new List<Flight>();
+            try
+            {
+                return flights;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return flights;
+            }
+        }
+
+        /// <summary>
+        /// This API call retrieves flights for a particular aircraft within a certain time interval. Resulting flights departed and arrived within [begin, end].
+        /// If no flights are found for the given period, HTTP stats 404 - Not found is returned with an empty response body.
+        /// The response is a JSON array of flights where each flight is an object.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Flight> GetFlightsByAircraft()
+        {
+            List<Flight> flights = new List<Flight>();
+            try
+            {
+                return flights;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return flights;
+            }
+        }
+
+
+        /// <summary>
+        /// Retrieve flights for a certain airport which arrived within a given time interval [begin, end].
+        /// If no flights are found for the given period, HTTP stats 404 - Not found is returned with an empty response body.
+        /// The response is a JSON array of flights where each flight is an object.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Flight> GetArrivalsByAirport()
+        {
+            List<Flight> flights = new List<Flight>();
+            try
+            {
+                return flights;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return flights;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve flights for a certain airport which departed within a given time interval [begin, end].
+        /// If no flights are found for the given period, HTTP stats 404 - Not found is returned with an empty response body.
+        /// The response is a JSON array of flights where each flight is an object.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Flight> GetDeparturesByAirport()
+        {
+            List<Flight> flights = new List<Flight>();
+            try
+            {
+                return flights;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return flights;
             }
         }
     }
