@@ -88,13 +88,20 @@ namespace Core.Services
         /// This API call retrieves flights for a certain time interval [begin, end].
         /// If no flights are found for the given time period, HTTP status 404 - Not found is returned with an empty response body.
         /// The response is a JSON array of flights where each flight is an object.
-        /// </summary>s
+        /// </summary>
+        /// <param name="beginTime">Start of time interval to retrieve flights for as Unix time (seconds since epoch)</param>
+        /// <param name="endTime">End of time interval to retrieve flights for as Unix time (seconds since epoch)</param>
         /// <returns></returns>
-        public IEnumerable<Flight> GetFlightsByTime()
+        public IEnumerable<Flight> GetFlightsByTime(int beginTime, int endTime)
         {
             List<Flight> flights = new List<Flight>();
             try
             {
+                // Sends a request to the API endpoint
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = httpClient.GetAsync("https://opensky-network.org/api/flights/all").Result;
+
                 return flights;
             }
             catch (Exception ex)
