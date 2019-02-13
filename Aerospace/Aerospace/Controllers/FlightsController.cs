@@ -23,6 +23,7 @@ namespace Aerospace.Controllers
         public IActionResult Index()
         {
             var test = _flightsService.GetStates();
+            var test2 = _flightsService.GetFlightsByTime(1517227200, 1517230800);
 
             ViewData["message"] = test.FirstOrDefault().Icao24;
 

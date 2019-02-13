@@ -6,5 +6,6 @@ namespace Core.Interfaces
     public interface IFlightsService
     {
         IEnumerable<AircraftState> GetStates();
+        IEnumerable<Flight> GetFlightsByTime(int beginTime, int endTime);
     }
 }

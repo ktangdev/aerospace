@@ -100,9 +100,26 @@ namespace Core.Services
                 // Sends a request to the API endpoint
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = httpClient.GetAsync("https://opensky-network.org/api/flights/all").Result;
+                HttpResponseMessage response = httpClient.GetAsync("https://opensky-network.org/api/flights/all?begin=" + beginTime + "&end=" + endTime).Result;
 
-                return flights;
+                if (response.IsSuccessStatusCode)
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        // Upon a successful request read JSON object
+                        var result = content.ReadAsStringAsync();
+
+                        // Deserialize Json array straight into List of Flight objects
+                        flights = JsonConvert.DeserializeObject<List<Flight>>(result.Result);
+
+                        return flights;
+                    }
+                }
+                else
+                {
+                    // When response code is not successful, return empty list
+                    return flights;
+                }
             }
             catch (Exception ex)
             {
