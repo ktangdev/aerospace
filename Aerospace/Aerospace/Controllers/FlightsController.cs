@@ -24,6 +24,7 @@ namespace Aerospace.Controllers
         {
             var test = _flightsService.GetStates();
             var test2 = _flightsService.GetFlightsByTime(1517227200, 1517230800);
+            var test3 = _flightsService.GetFlightsByAircraft("3c675a", 1517184000, 1517270400);
 
             ViewData["message"] = test.FirstOrDefault().Icao24;
 

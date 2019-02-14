@@ -7,5 +7,6 @@ namespace Core.Interfaces
     {
         IEnumerable<AircraftState> GetStates();
         IEnumerable<Flight> GetFlightsByTime(int beginTime, int endTime);
+        IEnumerable<Flight> GetFlightsByAircraft(string icao, int beginTime, int endTime);
     }
 }

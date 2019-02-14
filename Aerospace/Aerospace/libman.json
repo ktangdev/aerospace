@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.19",
+      "files": [],
+      "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "bootstrap@3.3.7",
+      "destination": "wwwroot/lib/bootstrap/"
+    }
+  ]
+}

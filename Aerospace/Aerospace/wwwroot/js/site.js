@@ -1,5 +1,7 @@
 ﻿// Write your JavaScript code.
 $(document).ready(function () {
+    $('#table_id').DataTable();
+
     $("#opensky").click(function () {
         $.ajax({
             url: "https://opensky-network.org/api/states/all",
@@ -9,11 +11,3 @@ $(document).ready(function () {
         });
     });
 });
-
-var map;
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8
-    });
-}

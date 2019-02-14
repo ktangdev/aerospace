@@ -133,13 +133,38 @@ namespace Core.Services
         /// If no flights are found for the given period, HTTP stats 404 - Not found is returned with an empty response body.
         /// The response is a JSON array of flights where each flight is an object.
         /// </summary>
+        /// <param name="icao">Unique ICAO 24-bit address of the transponder in hex string representation. All letters need to be lower case</param>
+        /// <param name="beginTime">Start of time interval to retrieve flights for as Unix time (seconds since epoch)</param>
+        /// <param name="endTime">End of time interval to retrieve flights for as Unix time (seconds since epoch)</param>
         /// <returns></returns>
-        public IEnumerable<Flight> GetFlightsByAircraft()
+        public IEnumerable<Flight> GetFlightsByAircraft(string icao, int beginTime, int endTime)
         {
             List<Flight> flights = new List<Flight>();
             try
             {
-                return flights;
+                // Sends a request to the API endpoint
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = httpClient.GetAsync("https://opensky-network.org/api/flights/aircraft?icao24=" + icao.ToLower() + "&begin=" + beginTime + " &end=" + endTime).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        // Upon a successful request read JSON object
+                        var result = content.ReadAsStringAsync();
+
+                        // Deserialize Json array straight into List of Flight objects
+                        flights = JsonConvert.DeserializeObject<List<Flight>>(result.Result);
+
+                        return flights;
+                    }
+                }
+                else
+                {
+                    // When response code is not successful, return empty list
+                    return flights;
+                }
             }
             catch (Exception ex)
             {
